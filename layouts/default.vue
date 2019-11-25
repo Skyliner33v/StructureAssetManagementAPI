@@ -24,69 +24,61 @@
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-    <v-app-bar :clipped-left="clipped" fixed app>
+    <v-app-bar :clipped-left="clipped" fixed app color="primary">
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-      <v-btn @click.stop="miniVariant = !miniVariant" icon>
-        <v-icon>mdi-{{ `chevron-${miniVariant ? 'right' : 'left'}` }}</v-icon>
-      </v-btn>
-      <v-btn @click.stop="clipped = !clipped" icon>
-        <v-icon>mdi-application</v-icon>
-      </v-btn>
-      <v-btn @click.stop="fixed = !fixed" icon>
-        <v-icon>mdi-minus</v-icon>
-      </v-btn>
       <v-toolbar-title v-text="title" />
-      <v-spacer />
-      <v-btn @click.stop="rightDrawer = !rightDrawer" icon>
-        <v-icon>mdi-menu</v-icon>
-      </v-btn>
+      <v-spacer></v-spacer>
+      <div class="d-flex flex-row-reverse">
+        <wsdot-logo />
+      </div>
     </v-app-bar>
     <v-content>
       <v-container>
         <nuxt />
       </v-container>
     </v-content>
-    <v-navigation-drawer v-model="rightDrawer" :right="right" temporary fixed>
-      <v-list>
-        <v-list-item @click.native="right = !right">
-          <v-list-item-action>
-            <v-icon light>
-              mdi-repeat
-            </v-icon>
-          </v-list-item-action>
-          <v-list-item-title>Switch drawer (click me)</v-list-item-title>
-        </v-list-item>
-      </v-list>
-    </v-navigation-drawer>
-    <v-footer :fixed="fixed" app>
-      <span>&copy; 2019</span>
+    <v-footer :fixed="fixed" app class="d-flex flex-row-reverse">
+      <span>&copy; 2019 - WSDOT Bridge and Structures Office</span>
     </v-footer>
   </v-app>
 </template>
 
 <script>
+import WsdotLogo from '~/components/WsdotLogo.vue'
+
 export default {
+  components: {
+    WsdotLogo
+  },
   data() {
     return {
-      clipped: false,
-      drawer: false,
+      title: 'WSDOT Structure Asset Management',
+      drawer: true,
+      clipped: true,
       fixed: false,
+      miniVariant: false,
       items: [
         {
-          icon: 'mdi-apps',
-          title: 'Welcome',
+          icon: 'mdi-home',
+          title: 'Home',
           to: '/'
         },
         {
-          icon: 'mdi-chart-bubble',
-          title: 'Inspire',
-          to: '/inspire'
+          icon: 'mdi-database',
+          title: 'Database Admin',
+          to: '/dbAdmin'
+        },
+        {
+          icon: 'mdi-chart-line',
+          title: 'Charts',
+          to: '/charts'
+        },
+        {
+          icon: 'mdi-settings',
+          title: 'Settings',
+          to: '/settings'
         }
-      ],
-      miniVariant: false,
-      right: true,
-      rightDrawer: false,
-      title: 'Vuetify.js'
+      ]
     }
   }
 }

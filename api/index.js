@@ -4,6 +4,8 @@ const consola = require('consola')
 // Create express instance
 const app = express()
 
+app.use(express.json())
+
 // Require API routes
 const bridges = require('./routes/bridges')
 const transactions = require('./routes/transactions')

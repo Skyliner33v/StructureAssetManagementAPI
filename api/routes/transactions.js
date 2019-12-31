@@ -40,11 +40,11 @@ router.post('/transactions', async (req, res, next) => {
     const pool = await poolPromise
     const result = await pool
       .request()
-      .input('tableName', sql.NVarChar, req.params.tableName)
-      .input('apiRequestType', sql.NVarChar, req.params.apiRequestType)
-      .input('status', sql.NVarChar, req.params.status)
-      .input('numRows', sql.Int, req.params.numRows)
-      .input('datePosted', sql.DateTime, req.params.datePosted)
+      .input('tableName', sql.NVarChar, req.body.tableName)
+      .input('apiRequestType', sql.NVarChar, req.body.apiRequestType)
+      .input('status', sql.NVarChar, req.body.status)
+      .input('numRows', sql.Int, req.body.numRows)
+      .input('datePosted', sql.DateTime, req.body.datePosted)
       .query(
         'INSERT INTO [apiTransactions] (tableName, apiRequestType, status, numRows, datePosted) VALUES (@tableName, @apiRequestType, @status, @numRows, @datePosted)'
       )

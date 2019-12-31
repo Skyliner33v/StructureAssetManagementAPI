@@ -1,26 +1,26 @@
 const express = require('express')
 const consola = require('consola')
 
-// Create express instnace
+// Create express instance
 const app = express()
-const host = process.env.HOST
-const port = process.env.PORT
 
 // Require API routes
 const bridges = require('./routes/bridges')
+const transactions = require('./routes/transactions')
 
 // Import API Routes
 app.use(bridges)
+app.use(transactions)
 
 // Start the Server
-app.listen(port, host)
+app.listen()
 consola.ready({
-  message: `Server listening on http://${host}:${port}`,
+  message: 'API Server initialized and ready',
   badge: true
 })
 
 // Export the server middleware
 module.exports = {
-  path: '/api',
+  path: '/api/v1',
   handler: app
 }

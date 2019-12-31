@@ -3,19 +3,11 @@ const { poolPromise } = require('../db')
 
 const router = Router()
 
-// Mock Users
-// const bridges = [
-//   { name: 'Alexandre' },
-//   { name: 'Pooya' },
-//   { name: 'Sébastien' }
-// ]
-
-/* GET users listing. */
+// GET all bridges.
 router.get('/bridges', async (req, res, next) => {
   try {
     const pool = await poolPromise
-    const result = await pool.request().query('SELECT TOP 10 * FROM [BRIDGE]')
-
+    const result = await pool.request().query('SELECT * FROM [BRIDGE]')
     res.json(result)
   } catch (err) {
     res.status(500)
@@ -23,7 +15,7 @@ router.get('/bridges', async (req, res, next) => {
   }
 })
 
-/* GET user by ID. */
+// GET bridge by GD.
 router.get('/bridges/:id', async (req, res, next) => {
   try {
     const pool = await poolPromise

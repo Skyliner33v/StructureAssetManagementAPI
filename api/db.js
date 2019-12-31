@@ -3,7 +3,7 @@ const consola = require('consola')
 const dbConfig = require('./dbConfig')
 
 // Swap between 'LOCAL', 'TEST' and 'PRODUCTION' environments
-const env = 'TEST'
+const env = 'LOCAL'
 const connString = dbConfig.dbConfig[env].connectionString
 const dbName = dbConfig.dbConfig[env].server
 

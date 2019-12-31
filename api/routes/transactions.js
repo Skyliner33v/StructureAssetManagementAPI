@@ -24,7 +24,7 @@ router.get('/transactions/:id', async (req, res, next) => {
     const result = await pool
       .request()
       .query(
-        `SELECT * FROM [apiTransactions] WHERE BRIDGE_GD = '${transactionGD}'`
+        `SELECT * FROM [apiTransactions] WHERE transactionGID = '${transactionGD}'`
       )
 
     res.json(result)
